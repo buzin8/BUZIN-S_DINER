@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="web_standard" name="shell-type"/>
+  <title>BUZIN'S DINER</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <link href="styles.css" rel="stylesheet"/>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind.config.js"></script>
+</head>
+<body class="bg-black font-body-md text-on-surface antialiased selection:bg-primary selection:text-black min-h-screen">
+  <!-- Precision Lead Blue Dot -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- Smooth Cursor Follower Element -->
+  <div class="cursor-follower" id="cursorFollower" aria-hidden="true">
+    <div class="cursor-pointer-shape" id="cursorShape">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 54" fill="none" class="w-full h-full">
+        <path d="M42.6817 41.1495L27.5103 6.79925C26.7269 5.02557 24.2082 5.02558 23.3927 6.79925L7.59814 41.1495C6.75833 42.9759 8.52712 44.8902 10.4125 44.1954L24.3757 39.0496C24.8829 38.8627 25.4385 38.8627 25.9422 39.0496L39.8121 44.1954C41.6849 44.8902 43.4884 42.9759 42.6817 41.1495Z" fill="currentColor"/>
+        <path d="M43.7146 40.6933L28.5431 6.34306C27.3556 3.65428 23.5772 3.69516 22.3668 6.32755L6.57226 40.6778C5.3134 43.4156 7.97238 46.298 10.803 45.2549L24.7662 40.109C25.0221 40.0147 25.2999 40.0156 25.5494 40.1082L39.4193 45.254C42.2261 46.2953 44.9254 43.4347 43.7146 40.6933Z" stroke="#000000" stroke-width="1.8"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-2xl border-b border-[#262626]">
+    <div class="w-full px-margin-mobile md:px-margin h-20 flex items-center justify-between">
+      <div class="flex items-center gap-space-md">
+        <div class="relative w-11 h-11 rounded-full overflow-hidden border-2 border-primary/60 shadow-[0_0_15px_rgba(242,202,80,0.35)] bg-[#1a1a1a] flex items-center justify-center flex-shrink-0">
+          <img id="userLogoPhoto" alt="Buzin" class="user-logo-photo w-full h-full object-cover" src="profile.jpg"/>
+          <span id="avatarFallback" class="avatar-fallback text-primary font-serif font-bold text-lg select-none">B</span>
+        </div>
+        <a class="flex flex-col" data-path="the-experience" href="#">
+          <span class="font-headline-sm text-headline-sm text-primary tracking-wide uppercase">BUZIN'S DINER</span>
+          <span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Diner &amp; Grill</span>
+        </a>
+      </div>
+      <nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold border-b border-primary/40">
+        <a aria-current="page" class="uppercase tracking-wider transition-colors py-1 text-primary font-semibold border-b border-primary/40" data-path="the-experience" href="#">The Experience</a>
+        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="tasting-menus" href="#">Tasting Menus</a>
+        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="the-atelier" href="#">The Atelier</a>
+        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="private-dining" href="#">Private Dining</a>
+        <a class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="wine-reserve" href="#">Pairings</a>
+      </nav>
+      <div class="flex items-center gap-space-md">
+        <a class="px-space-md py-space-xs rounded bg-[#181818] border border-[#262626] text-primary hover:bg-primary hover:text-black transition-all duration-300 font-label-caps text-label-caps uppercase tracking-widest" data-path="reserve-a-table" href="#">Reserve a Table</a>
+        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-black text-[18px]">person</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full pt-20 bg-black">
+    <div class="flex flex-col w-full text-on-surface">
+      <!-- HERO -->
+      <section class="relative w-full px-margin-mobile md:px-margin pt-space-xl pb-space-xl overflow-hidden border-b border-[#1f1f1f]">
+        <div class="pointer-events-none absolute -top-40 left-1/4 w-[650px] h-[650px] rounded-full bg-primary/5 blur-[140px]"></div>
+        <div class="pointer-events-none absolute top-1/2 -right-40 w-[550px] h-[550px] rounded-full bg-secondary-container/30 blur-[160px]"></div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center relative z-10">
+          <div class="lg:col-span-6 flex flex-col justify-center pr-0 lg:pr-space-md">
+            <div class="flex flex-wrap items-center gap-space-sm mb-space-md">
+              <div class="inline-flex items-center gap-2 bg-[#181818] border border-[#2a2a2a] px-3.5 py-1.5 rounded-full shadow-sm">
+                <span class="text-primary tracking-widest text-xs font-serif">✦ ✦ ✦</span>
+                <span class="font-label-caps text-label-caps uppercase text-primary tracking-[0.2em]">Fine Indian Dining</span>
+              </div>
+              <div class="inline-flex items-center gap-2 bg-[#121212] border border-[#262626] px-3.5 py-1.5 rounded-full shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                <span class="font-label-caps text-label-caps uppercase text-secondary tracking-widest">Seasonal menu • Live fire</span>
+              </div>
+            </div>
+            <h1 class="font-display-hero text-headline-lg lg:text-display-hero text-white leading-[1.08] tracking-tight mb-space-md">
+              Modern India. <span class="italic font-headline-lg text-primary">Timeless fire.</span>
+            </h1>
+            <div class="w-16 h-[2px] bg-primary mb-space-md opacity-75"></div>
+            <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-space-lg leading-relaxed font-light">
+              A contemporary tasting house shaped by regional Indian classics, elevated plating, and the depth of slow-cooked spice rituals.
+            </p>
+            <div class="flex flex-wrap items-center gap-space-md">
+              <a class="px-space-lg py-space-md bg-primary text-black font-semibold font-label-caps text-label-caps uppercase tracking-[0.2em] rounded shadow-xl hover:bg-primary-fixed-dim transition-all duration-300" data-path="reserve-a-table" href="#">
+                Book a Table
+              </a>
+              <a class="px-space-lg py-space-md bg-[#181818] border border-[#262626] text-white font-label-caps text-label-caps uppercase tracking-[0.2em] rounded shadow-md hover:text-primary hover:border-primary/40 transition-all duration-300 flex items-center gap-2" data-path="tasting-menus" href="#">
+                <span>Explore the Menu</span>
+                <span class="material-symbols-outlined text-[16px]">north_east</span>
+              </a>
+            </div>
+            <div class="grid grid-cols-3 gap-space-sm pt-space-xl mt-space-md border-t border-[#1c1c1c]">
+              <div class="flex flex-col">
+                <span class="font-label-caps text-label-caps uppercase text-outline tracking-widest">Cooking</span>
+                <span class="font-headline-sm text-headline-sm text-white mt-1">Regional Indian</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-label-caps text-label-caps uppercase text-outline tracking-widest">The menu</span>
+                <span class="font-headline-sm text-headline-sm text-white mt-1">Seasonal</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-label-caps text-label-caps uppercase text-outline tracking-widest">Hospitality</span>
+                <span class="font-headline-sm text-headline-sm text-primary mt-1">Made to share</span>
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-6 relative flex items-center justify-center mt-space-lg lg:mt-0">
+            <div class="absolute -inset-2 bg-gradient-to-r from-primary/10 via-secondary-container/20 to-transparent rounded-3xl blur-2xl opacity-60"></div>
+            <div class="relative w-full h-[600px] rounded-2xl overflow-hidden border border-[#262626] bg-[#0c0c0c] shadow-2xl">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Warmly lit restaurant dining room"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/20"></div>
+            <div class="absolute top-5 left-6 z-10 text-[11px] uppercase tracking-[0.25em] text-primary flex items-center gap-2 bg-black/80 px-3 py-1.5 rounded-full border border-[#262626]">
+              <span class="w-2 h-2 rounded-full bg-primary"></span> BUZIN'S DINER • Indian dining
+            </div>
+            <div class="absolute bottom-5 left-6 right-6 z-10 text-sm text-white/90 tracking-wide font-light">
+              Regional Indian flavors, a modern tasting table, and the warmth of the grill.
+            </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1. SENSORY MANIFESTO -->
+      <section class="w-full px-margin-mobile md:px-margin py-space-xl bg-[#080808] border-b border-[#1f1f1f]">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl">
+          <div>
+            <span class="font-label-caps text-label-caps uppercase tracking-[0.25em] text-primary block mb-space-xs">Our approach</span>
+            <h2 class="font-headline-lg text-headline-lg text-white">Rooted in India. Made for discovery.</h2>
+          </div>
+          <p class="font-body-md text-body-md text-on-surface-variant max-w-md mt-4 md:mt-0 font-light">
+            We celebrate the people, ingredients, and techniques behind India's regional kitchens, with room for curiosity and new ideas.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+          <div class="bg-[#121212] border border-[#222222] p-space-lg rounded-xl relative group hover:border-primary/40 transition-all duration-500 shadow-md flex flex-col justify-between h-full">
+            <div>
+              <div class="flex items-center justify-between mb-space-md">
+                <span class="font-headline-md text-headline-md text-primary/30 group-hover:text-primary transition-colors">01</span>
+                <span class="material-symbols-outlined text-primary text-[28px]">routine</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm text-white mb-space-xs">Regional roots</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant font-light leading-relaxed mb-space-md">
+                India's kitchens are full of distinct traditions. We take inspiration from regional recipes and the stories they carry.
+              </p>
+            </div>
+            <div class="pt-space-sm border-t border-[#1c1c1c]">
+              <span class="font-label-caps text-label-caps text-outline uppercase tracking-widest block">Our inspiration</span>
+              <span class="font-body-sm text-body-sm text-white mt-1 block">Recipes with a sense of place</span>
+            </div>
+          </div>
+          <div class="bg-[#121212] border border-[#222222] p-space-lg rounded-xl relative group hover:border-secondary/40 transition-all duration-500 shadow-md flex flex-col justify-between h-full">
+            <div>
+              <div class="flex items-center justify-between mb-space-md">
+                <span class="font-headline-md text-headline-md text-secondary/30 group-hover:text-secondary transition-colors">02</span>
+                <span class="material-symbols-outlined text-secondary text-[28px]">local_fire_department</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm text-white mb-space-xs">Spice &amp; slow cooking</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant font-light leading-relaxed mb-space-md">
+                Slow-cooked spice rituals bring depth and warmth to the table, while thoughtful plating gives familiar flavors a fresh perspective.
+              </p>
+            </div>
+            <div class="pt-space-sm border-t border-[#1c1c1c]">
+              <span class="font-label-caps text-label-caps text-outline uppercase tracking-widest block">In the kitchen</span>
+              <span class="font-body-sm text-body-sm text-white mt-1 block">Time, care, and layered flavor</span>
+            </div>
+          </div>
+          <div class="bg-[#121212] border border-[#222222] p-space-lg rounded-xl relative group hover:border-tertiary/40 transition-all duration-500 shadow-md flex flex-col justify-between h-full">
+            <div>
+              <div class="flex items-center justify-between mb-space-md">
+                <span class="font-headline-md text-headline-md text-tertiary/30 group-hover:text-tertiary transition-colors">03</span>
+                <span class="material-symbols-outlined text-tertiary text-[28px]">wine_bar</span>
+              </div>
+              <h3 class="font-headline-sm text-headline-sm text-white mb-space-xs">Seasonal ingredients</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant font-light leading-relaxed mb-space-md">
+                Each menu follows the seasons and celebrates the ingredients and producers that make every dish special.
+              </p>
+            </div>
+            <div class="pt-space-sm border-t border-[#1c1c1c]">
+              <span class="font-label-caps text-label-caps text-outline uppercase tracking-widest block">On the menu</span>
+              <span class="font-body-sm text-body-sm text-white mt-1 block">Fresh ideas, familiar warmth</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. SIGNATURE DISHES SHOWCASE -->
+      <section class="w-full px-margin-mobile md:px-margin py-space-xl relative border-b border-[#1f1f1f]">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl">
+          <div>
+            <span class="font-label-caps text-label-caps uppercase tracking-[0.25em] text-primary block mb-space-xs">From the kitchen</span>
+            <h2 class="font-headline-lg text-headline-lg text-white">Signature plates</h2>
+          </div>
+          <div class="flex items-center gap-space-sm mt-4 md:mt-0">
+            <span class="font-label-caps text-label-caps uppercase tracking-widest text-outline">Regional classics, reimagined</span>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+          <!-- Dish Card 1 -->
+          <div class="bg-[#121212] border border-[#222222] rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between group hover:border-[#383838] transition-all duration-500">
+            <div class="relative h-72 w-full overflow-hidden">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90 group-hover:brightness-100" alt="Prawns in a rich curry sauce" src="https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&amp;fit=crop&amp;w=900&amp;q=85"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent"></div>
+              <div class="absolute top-4 left-4">
+                <span class="bg-black/80 backdrop-blur-md border border-[#262626] px-3 py-1 rounded text-primary font-label-caps text-label-caps uppercase tracking-widest">Coastal classic</span>
+              </div>
+              <div class="absolute bottom-3 right-4 font-headline-sm text-headline-sm text-primary">
+                <span class="text-xs text-outline font-normal">Kerala &amp; Mangalorean</span>
+              </div>
+            </div>
+            <div class="p-space-lg flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="font-headline-sm text-headline-sm text-white mb-space-xs">Seafood Moilee</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant font-light mb-space-md">
+                  A coastal Kerala and Mangalorean classic, brought to the table with delicate spices and a silky, turmeric-infused coconut milk reduction.
+                </p>
+              </div>
+              <div class="bg-[#181818] border border-[#222222] p-space-sm rounded-lg flex items-start gap-space-sm mt-space-sm">
+                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">wine_bar</span>
+                <div class="flex flex-col">
+                  <span class="font-label-caps text-label-caps uppercase text-primary tracking-widest">On the plate</span>
+                  <span class="font-body-sm text-body-sm text-white">Coastal spices • Coconut • Turmeric</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dish Card 2 -->
+          <div class="bg-[#121212] border border-[#222222] rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between group hover:border-[#383838] transition-all duration-500">
+            <div class="relative h-72 w-full overflow-hidden">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90 group-hover:brightness-100" alt="Fire-grilled lamb chops" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&amp;fit=crop&amp;w=900&amp;q=85"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent"></div>
+              <div class="absolute top-4 left-4">
+                <span class="bg-black/80 backdrop-blur-md border border-[#262626] px-3 py-1 rounded text-primary font-label-caps text-label-caps uppercase tracking-widest">From the grill</span>
+              </div>
+              <div class="absolute bottom-3 right-4 font-headline-sm text-headline-sm text-primary">
+                <span class="text-xs text-outline font-normal">Smoked • Fire-grilled</span>
+              </div>
+            </div>
+            <div class="p-space-lg flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="font-headline-sm text-headline-sm text-white mb-space-xs">Dhuwandaar Lamb Chops</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant font-light mb-space-md">
+                  Applewood and garam masala-smoked lamb chops, char-grilled with a North Indian spice marinade and a touch of modern smoke.
+                </p>
+              </div>
+              <div class="bg-[#181818] border border-[#222222] p-space-sm rounded-lg flex items-start gap-space-sm mt-space-sm">
+                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">wine_bar</span>
+                <div class="flex flex-col">
+                  <span class="font-label-caps text-label-caps uppercase text-primary tracking-widest">On the plate</span>
+                  <span class="font-body-sm text-body-sm text-white">Garam masala • Applewood • Fire</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dish Card 3 -->
+          <div class="bg-[#121212] border border-[#222222] rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between group hover:border-[#383838] transition-all duration-500">
+            <div class="relative h-72 w-full overflow-hidden">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-90 group-hover:brightness-100" alt="Bite-sized spiced kebabs" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&amp;fit=crop&amp;w=900&amp;q=85"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent"></div>
+              <div class="absolute top-4 left-4">
+                <span class="bg-black/80 backdrop-blur-md border border-[#262626] px-3 py-1 rounded text-primary font-label-caps text-label-caps uppercase tracking-widest">Street-food favorite</span>
+              </div>
+              <div class="absolute bottom-3 right-4 font-headline-sm text-headline-sm text-primary">
+                <span class="text-xs text-outline font-normal">Mumbai street-food favorite</span>
+              </div>
+            </div>
+            <div class="p-space-lg flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="font-headline-sm text-headline-sm text-white mb-space-xs">Sizzling Chote Kebab</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant font-light mb-space-md">
+                  Bite-sized kebabs of warmly spiced minced meat, cooked until crisp outside and served sizzling with fresh chutney.
+                </p>
+              </div>
+              <div class="bg-[#181818] border border-[#222222] p-space-sm rounded-lg flex items-start gap-space-sm mt-space-sm">
+                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">wine_bar</span>
+                <div class="flex flex-col">
+                  <span class="font-label-caps text-label-caps uppercase text-primary tracking-widest">On the plate</span>
+                  <span class="font-body-sm text-body-sm text-white">Minced meat • Warm spices • Fresh chutney</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-space-lg bg-[#121212] border border-[#262626] p-space-lg rounded-2xl flex flex-col lg:flex-row items-center justify-between gap-space-md shadow-lg">
+          <div class="flex flex-col gap-1 max-w-2xl">
+            <span class="font-label-caps text-label-caps uppercase text-primary tracking-[0.2em]">For the full experience</span>
+            <h4 class="font-headline-sm text-headline-sm text-white">A seasonal tasting menu</h4>
+            <p class="font-body-sm text-body-sm text-on-surface-variant font-light">
+              Explore a chef-led progression of regional dishes shaped by the finest ingredients of the season.
+            </p>
+          </div>
+          <div class="flex items-center gap-space-lg">
+            <div class="text-right">
+              <span class="font-label-caps text-label-caps uppercase text-outline tracking-wider block">Ask us</span>
+              <span class="font-headline-md text-headline-md text-primary">Seasonal menu</span>
+            </div>
+            <a class="px-space-md py-space-sm bg-primary text-black font-semibold font-label-caps text-label-caps uppercase tracking-widest rounded hover:bg-primary-fixed-dim transition-colors" data-path="reserve-a-table" href="#">
+              Book a Table
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. CHEF SPOTLIGHT -->
+      <section class="w-full px-margin-mobile md:px-margin py-space-xl bg-[#080808] relative overflow-hidden border-b border-[#1f1f1f]">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+          <div class="lg:col-span-5 relative">
+            <div class="relative w-full h-[520px] rounded-2xl overflow-hidden shadow-2xl border border-[#222222]">
+              <img class="w-full h-full object-cover" alt="Elegant Indian restaurant dining room" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+            </div>
+            <div class="absolute -bottom-6 -right-4 md:-right-6 bg-[#181818]/95 border border-[#2a2a2a] backdrop-blur-xl p-space-md rounded-xl shadow-2xl max-w-xs">
+              <span class="font-label-caps text-label-caps uppercase text-primary tracking-widest block mb-1">The dining room</span>
+              <p class="font-headline-sm text-headline-sm italic text-white font-normal">
+                A five-star Indian dining experience, made for sharing.
+              </p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 flex flex-col justify-center pl-0 lg:pl-space-xl mt-space-xl lg:mt-0">
+            <div class="inline-flex items-center gap-2 mb-space-xs">
+              <span class="material-symbols-outlined text-primary text-[20px]">award_star</span>
+              <span class="font-label-caps text-label-caps uppercase tracking-[0.25em] text-primary">Our story</span>
+            </div>
+            <h2 class="font-headline-lg text-headline-lg text-white mb-space-md leading-tight">
+              Rooted in India. Made for discovery.
+            </h2>
+            <p class="font-body-lg text-body-lg text-on-surface-variant font-light mb-space-md leading-relaxed">
+              At Buzin's Diner, the traditions of India's kitchens meet the curiosity of a modern tasting table. Each menu follows the seasons and celebrates the people, ingredients, and techniques behind every dish.
+            </p>
+            <div class="bg-[#121212] border border-[#222222] p-space-md rounded-xl shadow-md mb-space-lg">
+              <div class="flex items-center gap-1 text-primary mb-2">
+                <span class="material-symbols-outlined text-[18px]">format_quote</span>
+                <span class="font-label-caps text-label-caps uppercase tracking-widest font-semibold text-primary">A note from our kitchen</span>
+              </div>
+              <p class="font-body-md text-body-md italic text-[#d4d4d4] font-light leading-relaxed">
+                Our chefs honor time-tested recipes while making room for new ideas, bringing warmth, thoughtful craft, and a sense of occasion to every service.
+              </p>
+            </div>
+            <div class="grid grid-cols-3 gap-space-sm pt-space-xs border-t border-[#1c1c1c]">
+              <div>
+                <span class="font-headline-md text-headline-md text-primary">12</span>
+                <span class="font-label-caps text-label-caps uppercase text-outline tracking-wider block mt-0.5">Regional cuisines</span>
+              </div>
+              <div>
+                <span class="font-headline-md text-headline-md text-white">40+</span>
+                <span class="font-label-caps text-label-caps uppercase text-outline tracking-wider block mt-0.5">Local producers</span>
+              </div>
+              <div>
+                <span class="font-headline-md text-headline-md text-secondary">2018</span>
+                <span class="font-label-caps text-label-caps uppercase text-outline tracking-wider block mt-0.5">Founded</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. WINE RESERVE PREVIEW -->
+      <section class="w-full px-margin-mobile md:px-margin py-space-xl relative border-b border-[#1f1f1f]">
+        <div class="bg-[#121212] border border-[#242424] rounded-3xl p-space-lg md:p-space-xl shadow-2xl relative overflow-hidden">
+          <div class="pointer-events-none absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-primary/10 blur-[100px]"></div>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center relative z-10">
+            <div class="lg:col-span-5 flex flex-col justify-center">
+              <span class="font-label-caps text-label-caps uppercase tracking-[0.25em] text-primary block mb-space-xs">More than a meal</span>
+              <h2 class="font-headline-lg text-headline-lg text-white mb-space-sm">
+                An evening worth sharing
+              </h2>
+              <p class="font-body-md text-body-md text-on-surface-variant font-light mb-space-lg leading-relaxed">
+                Join us for a considered evening of generous hospitality, vibrant flavors, and thoughtful details.
+              </p>
+              <div class="space-y-space-sm mb-space-lg">
+                <div class="flex justify-between items-center bg-[#181818] border border-[#222222] px-4 py-3 rounded-lg">
+                  <span class="font-body-sm text-body-sm text-white">Gather with friends, family, or colleagues</span>
+                  <span class="font-headline-sm text-headline-sm text-primary">Private dining</span>
+                </div>
+                <div class="flex justify-between items-center bg-[#181818] border border-[#222222] px-4 py-3 rounded-lg">
+                  <span class="font-body-sm text-body-sm text-white">A chef-led progression of seasonal dishes</span>
+                  <span class="font-headline-sm text-headline-sm text-white">Seasonal tasting</span>
+                </div>
+                <div class="flex justify-between items-center bg-[#181818] border border-[#222222] px-4 py-3 rounded-lg">
+                  <span class="font-body-sm text-body-sm text-white">Wines, teas, and non-alcoholic options</span>
+                  <span class="font-headline-sm text-headline-sm text-tertiary">Thoughtful pairings</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-space-md">
+                <a class="px-space-lg py-space-sm bg-primary text-black font-semibold font-label-caps text-label-caps uppercase tracking-widest rounded hover:bg-primary-fixed-dim transition-colors shadow-md" data-path="wine-reserve" href="#">
+                  Explore the menu
+                </a>
+                <a class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest hover:text-primary transition-colors flex items-center gap-1" data-path="wine-reserve" href="#">
+                  <span>Plan your visit</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="lg:col-span-7 flex flex-col gap-space-md mt-space-lg lg:mt-0">
+              <div class="relative w-full h-[360px] md:h-[420px] rounded-2xl overflow-hidden shadow-2xl border border-[#222222]">
+                <img class="w-full h-full object-cover" alt="A richly spiced Indian meal" src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent"></div>
+                <div class="absolute top-5 left-5 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-[#262626] font-label-caps text-label-caps uppercase tracking-widest text-primary">
+                  Thoughtful pairings
+                </div>
+                <div class="absolute bottom-5 left-5 right-5">
+                  <h3 class="font-headline-sm text-headline-sm text-white mb-1">A pairing for every palate</h3>
+                  <p class="font-body-sm text-body-sm text-white/80">Wines, teas, and distinctive non-alcoholic options.</p>
+                </div>
+              </div>
+
+              <!-- Restaurant Photography Card -->
+              <div class="relative w-full h-[240px] md:h-[280px] rounded-2xl overflow-hidden shadow-2xl border border-[#222222]">
+                <img class="w-full h-full object-cover" alt="Elegant restaurant terrace with a view" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4 bg-black/85 backdrop-blur-md border border-[#262626] p-space-sm rounded-xl flex items-center justify-between">
+                  <div>
+                    <span class="font-label-caps text-label-caps uppercase text-primary tracking-widest block">BUZIN'S DINER</span>
+                    <span class="font-body-sm text-body-sm text-white font-medium">Warm hospitality • Modern Indian dining</span>
+                  </div>
+                  <span class="material-symbols-outlined text-primary text-[24px]">verified</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. TABLE RESERVATIONS -->
+      <section class="w-full px-margin-mobile md:px-margin py-space-xl bg-[#080808] relative">
+        <div class="relative w-full rounded-3xl overflow-hidden p-space-lg md:p-space-xl bg-[#121212] border border-[#262626] shadow-2xl text-center flex flex-col items-center">
+          <div class="pointer-events-none absolute inset-0 opacity-10 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:24px_24px]"></div>
+          <div class="relative z-10 max-w-3xl flex flex-col items-center">
+            <span class="font-label-caps text-label-caps uppercase tracking-[0.3em] text-primary mb-space-xs block">
+              Join us
+            </span>
+            <h2 class="font-headline-lg text-headline-lg text-white mb-space-sm">
+              Make an evening of it.
+            </h2>
+            <p class="font-body-lg text-body-lg text-on-surface-variant font-light mb-space-lg max-w-xl">
+              We look forward to welcoming you. Contact our team to plan your visit or ask about private dining.
+            </p>
+            <div class="w-full max-w-xl bg-black/80 border border-[#262626] backdrop-blur-xl p-space-md rounded-2xl shadow-xl flex flex-col sm:flex-row items-center gap-space-sm mb-space-lg">
+              <div class="flex-1 w-full text-left bg-[#181818] border border-[#222222] p-2.5 rounded">
+                <span class="font-label-caps text-label-caps uppercase text-outline block text-[9px]">Location</span>
+                <span class="font-body-sm text-body-sm text-white font-medium">Contact us for directions</span>
+              </div>
+              <div class="flex-1 w-full text-left bg-[#181818] border border-[#222222] p-2.5 rounded">
+                <span class="font-label-caps text-label-caps uppercase text-outline block text-[9px]">Opening hours</span>
+                <span class="font-body-sm text-body-sm text-white font-medium">Please enquire</span>
+              </div>
+              <a class="w-full sm:w-auto px-space-md py-3 bg-primary text-black font-semibold font-label-caps text-label-caps uppercase tracking-widest rounded hover:bg-primary-fixed-dim transition-colors whitespace-nowrap shadow-md" data-path="reserve-a-table" href="#">
+                Contact our team
+              </a>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-space-lg font-label-caps text-label-caps text-outline uppercase tracking-wider">
+              <span class="flex items-center gap-1.5"><span class="text-primary font-serif">✦</span> Regional Indian flavors</span>
+              <span class="flex items-center gap-1.5"><span class="text-primary font-serif">✦</span> Seasonal menus</span>
+              <span class="flex items-center gap-1.5"><span class="text-primary font-serif">✦</span> Private dining</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-black text-on-surface-variant pt-space-xl pb-space-lg border-t border-[#1f1f1f]">
+    <div class="w-full px-margin-mobile md:px-margin">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-space-xl">
+        <div class="md:col-span-4 flex flex-col gap-space-sm">
+          <div class="flex items-center gap-2"><span class="text-primary text-xl font-serif">✦✦✦</span><span class="font-label-caps text-label-caps uppercase tracking-widest text-primary">BUZIN'S DINER</span></div>
+          <p class="font-body-md text-body-md text-on-surface-variant max-w-sm">A contemporary Indian dining experience shaped by regional recipes, seasonal ingredients, and the warmth of the grill.</p>
+          <div class="font-label-caps text-label-caps text-outline uppercase tracking-wider pt-space-xs">Modern India • Timeless fire</div>
+        </div>
+        <div class="md:col-span-3 flex flex-col gap-space-xs">
+          <span class="font-label-caps text-label-caps uppercase tracking-widest text-white font-semibold mb-space-xs">Visit</span>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">Contact our team for directions and reservation details.</p>
+        </div>
+        <div class="md:col-span-3 flex flex-col gap-space-xs">
+          <span class="font-label-caps text-label-caps uppercase tracking-widest text-white font-semibold mb-space-xs">Dining</span>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">Seasonal tasting menus, private dining, and thoughtful pairings.</p>
+        </div>
+        <div class="md:col-span-2 flex flex-col gap-space-xs">
+          <span class="font-label-caps text-label-caps uppercase tracking-widest text-white font-semibold mb-space-xs">Get in touch</span>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-xs">Our team can help plan your visit or private dining occasion.</p>
+          <a class="font-label-caps text-label-caps text-primary uppercase tracking-widest hover:text-white transition-colors" data-path="reserve-a-table" href="#">Make an enquiry →</a>
+        </div>
+      </div>
+      <div class="pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm border-t border-[#1a1a1a]">
+        <div class="font-label-caps text-label-caps text-outline uppercase">© BUZIN'S DINER. All rights reserved.</div>
+        <div class="flex items-center gap-space-lg font-label-caps text-label-caps uppercase tracking-widest">
+          <a class="text-outline hover:text-primary transition-colors" data-path="the-experience" href="#">Instagram</a>
+          <a class="text-outline hover:text-primary transition-colors" data-path="the-experience" href="#">Our story</a>
+          <a class="text-outline hover:text-primary transition-colors" data-path="tasting-menus" href="#">Menu</a>
+          <a class="text-outline hover:text-primary transition-colors" data-path="private-dining" href="#">Private dining</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Precision Smooth Spring Cursor Follower with Trailing Glow -->
+  <script src="script.js"></script>
+</body>
+</html>
